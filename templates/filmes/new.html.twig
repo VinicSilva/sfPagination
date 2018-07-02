@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Filmes{% endblock %}
+
+{% block body %}
+    <h1>Create new Filmes</h1>
+
+    {{ include('filmes/_form.html.twig') }}
+
+    <a href="{{ path('filmes_index') }}">back to list</a>
+{% endblock %}

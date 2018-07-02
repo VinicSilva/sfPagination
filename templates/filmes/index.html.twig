@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Filmes index{% endblock %}
+
+{% block body %}
+    <a href="{{ path('filmes_new') }}" class="btn btn-primary float-right">Novo Filme</a>
+    <h1>Filmes index</h1>
+
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(filmes, 'Id', 'id') }}</th>
+                <th>{{ knp_pagination_sortable(filmes, 'Titulo', 'titulo') }}</th>
+                <th>{{ knp_pagination_sortable(filmes, 'Descrição', 'descricao') }}</th>
+                <th>{{ knp_pagination_sortable(filmes, 'Lançamento', 'ano_lancamento') }}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for filme in filmes %}
+            <tr>
+                <td>{{ filme.id }}</td>
+                <td>{{ filme.titulo }}</td>
+                <td>{{ filme.descricao }}</td>
+                <td>{{ filme.anoLancamento }}</td>
+                <td>
+                    <a href="{{ path('filmes_show', {'id': filme.id}) }}">show</a>
+                    <a href="{{ path('filmes_edit', {'id': filme.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    {{ knp_pagination_render(filmes) }}
+
+    <a href="{{ path('filmes_new') }}">Create new</a>
+{% endblock %}
